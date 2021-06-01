@@ -1,0 +1,11 @@
+elao_consent:
+    messages:
+        consent_message: Des cookies, petits fichiers informatiques, peuvent être déposés sur votre terminal. Si vous y consentez, le responsable du site pourra recueillir des statistiques de visites anonymes pour optimiser la navigation. Pour en savoir plus lisez notre <a href="%privacy_policy_url%">politique de confidentialité</a>.
+        yes: Oui
+        no: Non
+        accept: Accepter
+        reject: Refuser
+        details: Voir le détail
+        reject_all: Tout refuser
+        accept_all: Tout accepter
+        save: Enregistrer

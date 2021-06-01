@@ -1,0 +1,28 @@
+<form method="POST" style="position: fixed;top: 10px; right: 10px; max-width: 600px; background-color: #fff;padding: 40px;box-shadow: -5px 5px 10px #ccc;">
+    {% if consents|length > 1 %}
+        <p>{{ 'elao_consent.messages.consent_message'|trans({}, 'elao_consent')|raw }}</p>
+        <p>
+            <button type="submit" name="consents[_all]" value="0">{{ 'elao_consent.messages.reject_all'|trans({}, 'elao_consent')|raw }}</button>
+            <button type="submit" name="consents[_all]" value="1">{{ 'elao_consent.messages.accept_all'|trans({}, 'elao_consent')|raw }}</button>
+        </p>
+        <details>
+            <summary>{{ 'elao_consent.messages.details'|trans({}, 'elao_consent')|raw }}</summary>
+            {% for name, consent in consents %}
+                <div>
+                    {{ consent.description }}
+                    <input type="radio" name="consents[{{ name }}]" value="1" id="consent_{{ name }}_yes">
+                    <label for="consent_{{ name }}_yes">{{ 'elao_consent.messages.yes'|trans({}, 'elao_consent')|raw }}</label>
+                    <input type="radio" name="consents[{{ name }}]" value="0" id="consent_{{ name }}_no">
+                    <label for="consent_{{ name }}_no">{{ 'elao_consent.messages.yes'|trans({}, 'elao_consent')|raw }}</label>
+                </div>
+            {% endfor %}
+            <button type="submit">{{ 'elao_consent.messages.save'|trans({}, 'elao_consent')|raw }}</button>
+        </details>
+    {% else %}
+        <p>{{ 'elao_consent.messages.consent_message'|trans({}, 'elao_consent')|raw }}</p>
+        <p>
+            <button type="submit" name="consents[{{ consents|keys|first }}]" value="1">{{ 'elao_consent.messages.accept'|trans({}, 'elao_consent')|raw }}</button>
+            <button type="submit" name="consents[{{ consents|keys|first }}]" value="0">{{ 'elao_consent.messages.reject'|trans({}, 'elao_consent')|raw }}</button>
+        </p>
+    {% endif %}
+</form>
