@@ -1,28 +1,247 @@
-<form method="POST" style="position: fixed;top: 10px; right: 10px; max-width: 600px; background-color: #fff;padding: 40px;box-shadow: -5px 5px 10px #ccc;">
+<form method="POST" class="cookie-consent">
     {% if consents|length > 1 %}
         <p>{{ 'elao_consent.messages.consent_message'|trans({}, 'elao_consent')|raw }}</p>
-        <p>
-            <button type="submit" name="consents[_all]" value="0">{{ 'elao_consent.messages.reject_all'|trans({}, 'elao_consent')|raw }}</button>
-            <button type="submit" name="consents[_all]" value="1">{{ 'elao_consent.messages.accept_all'|trans({}, 'elao_consent')|raw }}</button>
-        </p>
-        <details>
+        <details class="cookie-consent__details">
             <summary>{{ 'elao_consent.messages.details'|trans({}, 'elao_consent')|raw }}</summary>
-            {% for name, consent in consents %}
-                <div>
-                    {{ consent.description }}
-                    <input type="radio" name="consents[{{ name }}]" value="1" id="consent_{{ name }}_yes">
-                    <label for="consent_{{ name }}_yes">{{ 'elao_consent.messages.yes'|trans({}, 'elao_consent')|raw }}</label>
-                    <input type="radio" name="consents[{{ name }}]" value="0" id="consent_{{ name }}_no">
-                    <label for="consent_{{ name }}_no">{{ 'elao_consent.messages.yes'|trans({}, 'elao_consent')|raw }}</label>
-                </div>
-            {% endfor %}
-            <button type="submit">{{ 'elao_consent.messages.save'|trans({}, 'elao_consent')|raw }}</button>
+            <ul>
+                {% for name, consent in consents %}
+                    <li>
+                        {{ consent.description }}
+                        <div class="choice">
+                            <div class="radio-button radio-button--reject">
+                                <input type="radio" name="consents[{{ name }}]" value="0" id="consent_{{ name }}_no">
+                                <label for="consent_{{ name }}_no">{{ 'elao_consent.messages.reject'|trans({}, 'elao_consent')|raw }}</label>
+                            </div>
+                            <div class="radio-button radio-button--accept">
+                                <input type="radio" name="consents[{{ name }}]" value="1" id="consent_{{ name }}_yes">
+                                <label for="consent_{{ name }}_yes">{{ 'elao_consent.messages.accept'|trans({}, 'elao_consent')|raw }}</label>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="cookie-consent__actions">
+                <button type="submit">{{ 'elao_consent.messages.save'|trans({}, 'elao_consent')|raw }}</button>
+            </div>
         </details>
+        <div class="cookie-consent__actions">
+            <button type="submit" name="consents[_all]" value="0" class="reject-all">{{ 'elao_consent.messages.reject_all'|trans({}, 'elao_consent')|raw }}</button>
+            <button type="submit" name="consents[_all]" value="1" class="accept-all">{{ 'elao_consent.messages.accept_all'|trans({}, 'elao_consent')|raw }}</button>
+        </div>
     {% else %}
         <p>{{ 'elao_consent.messages.consent_message'|trans({}, 'elao_consent')|raw }}</p>
-        <p>
-            <button type="submit" name="consents[{{ consents|keys|first }}]" value="1">{{ 'elao_consent.messages.accept'|trans({}, 'elao_consent')|raw }}</button>
-            <button type="submit" name="consents[{{ consents|keys|first }}]" value="0">{{ 'elao_consent.messages.reject'|trans({}, 'elao_consent')|raw }}</button>
-        </p>
+        <div class="cookie-consent__actions">
+            <button type="submit" name="consents[{{ consents|keys|first }}]" value="1" class="reject-all">{{ 'elao_consent.messages.accept'|trans({}, 'elao_consent')|raw }}</button>
+            <button type="submit" name="consents[{{ consents|keys|first }}]" value="0" class="accept-all">{{ 'elao_consent.messages.reject'|trans({}, 'elao_consent')|raw }}</button>
+        </div>
     {% endif %}
 </form>
+
+<style>
+    /* consent box */
+    .cookie-consent {
+        --primary: #007bff;
+        --primary-dark: #256cdf;
+        --secondary: #dfebfa;
+        --secondary-dark: #cadef8;
+        --danger: #ef4055;
+        --neutral: #eae8e8;
+        --light: #fff;
+        --dark: #252525;
+
+        padding-top: 30px;
+        width: 600px;
+        position: fixed;
+        bottom: 10px;
+        left: 10px;
+        color: var(--dark);
+        background-color: var(--light);
+        border: solid 1px var(--neutral);
+        border-radius: 15px;
+        z-index: 2147483647;
+    }
+
+    .cookie-consent a {
+        color: var(--primary);
+        font-weight: bold;
+        text-decoration: underline;
+    }
+
+    .cookie-consent button {
+        padding: 7px 25px;
+        color: var(--light);
+        font-weight: bold;
+        background: var(--primary);
+        border: none;
+        border-radius: 5px;
+    }
+
+    .cookie-consent p {
+        padding: 0 40px;
+    }
+
+    .cookie-consent__details summary {
+        margin: 0 40px;
+        padding-right: 30px;
+        display: inline-block;
+        position: relative;
+        color: var(--primary);
+        font-weight: bold;
+        text-decoration: underline;
+        list-style: none;
+    }
+
+    .cookie-consent__details summary:before {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 22px;
+        content: '🍪';
+        line-height: 1;
+    }
+
+    .cookie-consent__details ul {
+        padding: 20px 40px 0;
+    }
+
+    .cookie-consent__details ul {
+        list-style: none;
+    }
+
+    .cookie-consent__details ul li {
+        margin: 0 0 4px;
+        display: flex;
+        align-items: center;
+    }
+
+    .cookie-consent__details ul li > div {
+        display: flex;
+        margin-left:  auto;
+    }
+
+    .cookie-consent__details[open] {
+        margin-bottom: 0;
+    }
+
+    .cookie-consent__details[open] + .cookie-consent__actions {
+        display: none;
+    }
+
+    .cookie-consent__actions {
+        margin: 30px 0 0;
+        display: flex;
+    }
+
+    .cookie-consent__actions button {
+        flex: 1;
+        height: 50px;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        border-radius: 0;
+        transition: background ease-in .2s;
+    }
+
+    .cookie-consent__actions button:first-of-type {
+        border-radius: 0 0 0 15px;
+    }
+
+    .cookie-consent__actions button:last-of-type {
+        border-radius: 0 0 15px 0;
+    }
+
+    .cookie-consent__actions button:only-of-type {
+        border-radius: 0 0 15px 15px;
+    }
+
+    .cookie-consent__actions button.reject-all {
+        background: var(--secondary);
+        color: var(--primary);
+    }
+
+    .cookie-consent__actions button.reject-all:hover,
+    .cookie-consent__actions button.reject-all:active,
+    .cookie-consent__actions button.reject-all:focus {
+        background: var(--secondary-dark);
+    }
+
+    .cookie-consent__actions button.accept-all {
+        color: var(--light);
+        background: var(--primary);
+    }
+
+    .cookie-consent__actions button.accept-all:hover,
+    .cookie-consent__actions button.accept-all:active,
+    .cookie-consent__actions button.accept-all:focus {
+        background: var(--primary-dark);
+    }
+
+    @media (max-width: 650px) {
+        .cookie-consent {
+            width: calc(100% - 20px);
+            flex-wrap: wrap;
+        }
+
+        .cookie-consent__details ul li {
+            margin: 0 0 20px;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .cookie-consent__details ul li > div {
+            margin: 10px 0 0;
+            width: 100%;
+        }
+    }
+
+    /* Radio button  */
+    .radio-button label {
+        margin: 0;
+        padding: 5px 0;
+        min-width: 90px;
+        font-weight: normal;
+        font-size: 14px;
+        text-align: center;
+        background: var(--neutral);
+        color: var(--dark);
+        cursor: pointer;
+    }
+
+    .radio-button:first-of-type label {
+        border-right: solid 2px var(--light);
+        border-radius: 5px 0 0 5px;
+    }
+
+    .radio-button:last-of-type label {
+        border-left: solid 2px var(--light);
+        border-radius: 0 5px 5px 0;
+    }
+
+    .radio-button input {
+        display: none;
+    }
+
+    .radio-button--accept input:checked + label {
+        color: var(--light);
+        background: var(--primary);
+        font-weight: bold;
+    }
+
+    .radio-button--reject input:checked + label {
+        color: var(--light);
+        background: var(--danger);
+        font-weight: bold;
+    }
+
+    @media ( max-width: 650px ) {
+        .radio-button {
+            width: 50%;
+        }
+
+        .radio-button label {
+            width: 100%;
+        }
+    }
+</style>
