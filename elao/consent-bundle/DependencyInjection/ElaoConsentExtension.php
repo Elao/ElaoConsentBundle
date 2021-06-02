@@ -23,6 +23,8 @@ class ElaoConsentExtension extends Extension implements PrependExtensionInterfac
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
+        $container->setParameter('elao_consent.cookie.name', $config['cookie']['name']);
+        $container->setParameter('elao_consent.cookie.ttl', $config['cookie']['ttl']);
         $container->setParameter('elao_consent.consents', $config['consents']);
 
         $loader = new Loader\PhpFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));

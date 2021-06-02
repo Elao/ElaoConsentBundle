@@ -11,9 +11,9 @@
 namespace Elao\Bundle\ConsentBundle\EventListener;
 
 use Elao\Bundle\ConsentBundle\Consent\ConsentStorage;
+use Elao\Bundle\ConsentBundle\Cookie\CookieFactory;
 use Elao\Bundle\ConsentBundle\Renderer\ToastRenderer;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,12 +24,18 @@ class ConsentEventSubscriber implements EventSubscriberInterface
 {
     private ConsentStorage $storage;
     private ToastRenderer $renderer;
+    private CookieFactory $cookieFactory;
     private array $consents;
 
-    public function __construct(ConsentStorage $storage, ToastRenderer $renderer, array $consents)
-    {
+    public function __construct(
+        ConsentStorage $storage,
+        ToastRenderer $renderer,
+        CookieFactory $cookieFactory,
+        array $consents,
+    ) {
         $this->storage = $storage;
         $this->renderer = $renderer;
+        $this->cookieFactory = $cookieFactory;
         $this->consents = $consents;
     }
 
@@ -59,18 +65,14 @@ class ConsentEventSubscriber implements EventSubscriberInterface
             }
 
             $response = new RedirectResponse($request->getUri());
-            $response->headers->setCookie(
-                Cookie::create('consents')
-                    ->withValue(json_encode($consents))
-                    ->withExpires((new \DateTime('+1 year'))->getTimestamp())
-            );
+            $response->headers->setCookie($this->cookieFactory->create($consents));
 
             $event->setResponse($response);
             $event->stopPropagation();
             return;
         }
 
-        $consents = json_decode($request->cookies->get('consents', '[]'), true);
+        $consents = $this->cookieFactory->read($request);
         $this->storage->setUserConsents($consents);
     }
 
