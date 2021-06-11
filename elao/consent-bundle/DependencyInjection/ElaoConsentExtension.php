@@ -10,6 +10,10 @@
 
 namespace Elao\Bundle\ConsentBundle\DependencyInjection;
 
+use Elao\Bundle\ConsentBundle\Consent\ConsentStorage;
+use Elao\Bundle\ConsentBundle\Cookie\CookieFactory;
+use Elao\Bundle\ConsentBundle\EventListener\ConsentEventSubscriber;
+use Elao\Bundle\ConsentBundle\Renderer\ToastRenderer;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
@@ -23,12 +27,18 @@ class ElaoConsentExtension extends Extension implements PrependExtensionInterfac
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $container->setParameter('elao_consent.cookie.name', $config['cookie']['name']);
-        $container->setParameter('elao_consent.cookie.ttl', $config['cookie']['ttl']);
-        $container->setParameter('elao_consent.consents', $config['consents']);
-
         $loader = new Loader\PhpFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.php');
+
+        $container
+            ->getDefinition(CookieFactory::class)
+            ->replaceArgument('$name', $config['cookie']['name'])
+            ->replaceArgument('$ttl', $config['cookie']['ttl'])
+        ;
+
+        $container->getDefinition(ConsentStorage::class)->replaceArgument('$consents', $config['consents']);
+        $container->getDefinition(ToastRenderer::class)->replaceArgument('$consents', $config['consents']);
+        $container->getDefinition(ConsentEventSubscriber::class)->replaceArgument('$consents', $config['consents']);
     }
 
     public function prepend(ContainerBuilder $container)
