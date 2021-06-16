@@ -1,14 +1,14 @@
 <link rel="stylesheet" href="{{ asset('bundles/elaoconsent/css/style.css') }}">
 
-<form method="POST" class="cookie-consent">
+<form method="POST" class="elao-consent">
     {% if consents|length > 1 %}
         <p>{{ 'elao_consent.messages.consent_message'|trans({}, 'elao_consent')|raw }}</p>
-        <details class="cookie-consent__details">
+        <details class="elao-consent__details">
             <summary>{{ 'elao_consent.messages.details'|trans({}, 'elao_consent')|raw }}</summary>
             <ul>
                 {% for name, consent in consents %}
                     <li>
-                        {{ consent.description }}
+                        {{ consent.label }}
                         <div class="choice">
                             <div class="radio-button radio-button--reject">
                                 <input type="radio" name="consents[{{ name }}]" value="0" id="consent_{{ name }}_no">
@@ -22,17 +22,17 @@
                     </li>
                 {% endfor %}
             </ul>
-            <div class="cookie-consent__actions">
+            <div class="elao-consent__actions">
                 <button type="submit">{{ 'elao_consent.messages.save'|trans({}, 'elao_consent')|raw }}</button>
             </div>
         </details>
-        <div class="cookie-consent__actions">
+        <div class="elao-consent__actions">
             <button type="submit" name="consents[_all]" value="0" class="reject-all">{{ 'elao_consent.messages.reject_all'|trans({}, 'elao_consent')|raw }}</button>
             <button type="submit" name="consents[_all]" value="1" class="accept-all">{{ 'elao_consent.messages.accept_all'|trans({}, 'elao_consent')|raw }}</button>
         </div>
     {% else %}
         <p>{{ 'elao_consent.messages.consent_message'|trans({}, 'elao_consent')|raw }}</p>
-        <div class="cookie-consent__actions">
+        <div class="elao-consent__actions">
             <button type="submit" name="consents[{{ consents|keys|first }}]" value="1" class="reject-all">{{ 'elao_consent.messages.accept'|trans({}, 'elao_consent')|raw }}</button>
             <button type="submit" name="consents[{{ consents|keys|first }}]" value="0" class="accept-all">{{ 'elao_consent.messages.reject'|trans({}, 'elao_consent')|raw }}</button>
         </div>

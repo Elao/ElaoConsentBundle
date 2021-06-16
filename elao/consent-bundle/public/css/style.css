@@ -1,5 +1,5 @@
 /* consent box */
-.cookie-consent {
+.elao-consent {
     --primary: #007bff;
     --primary-dark: #256cdf;
     --secondary: #dfebfa;
@@ -21,13 +21,13 @@
     z-index: 2147483647;
 }
 
-.cookie-consent a {
+.elao-consent a {
     color: var(--primary);
     font-weight: bold;
     text-decoration: underline;
 }
 
-.cookie-consent button {
+.elao-consent button {
     padding: 7px 25px;
     color: var(--light);
     font-weight: bold;
@@ -36,11 +36,11 @@
     border-radius: 5px;
 }
 
-.cookie-consent p {
+.elao-consent p {
     padding: 0 40px;
 }
 
-.cookie-consent__details summary {
+.elao-consent__details summary {
     margin: 0 40px;
     padding-right: 30px;
     display: inline-block;
@@ -51,7 +51,7 @@
     list-style: none;
 }
 
-.cookie-consent__details summary:before {
+.elao-consent__details summary:before {
     position: absolute;
     top: 0;
     right: 0;
@@ -60,39 +60,39 @@
     line-height: 1;
 }
 
-.cookie-consent__details ul {
+.elao-consent__details ul {
     padding: 20px 40px 0;
 }
 
-.cookie-consent__details ul {
+.elao-consent__details ul {
     list-style: none;
 }
 
-.cookie-consent__details ul li {
+.elao-consent__details ul li {
     margin: 0 0 4px;
     display: flex;
     align-items: center;
 }
 
-.cookie-consent__details ul li > div {
+.elao-consent__details ul li > div {
     display: flex;
     margin-left:  auto;
 }
 
-.cookie-consent__details[open] {
+.elao-consent__details[open] {
     margin-bottom: 0;
 }
 
-.cookie-consent__details[open] + .cookie-consent__actions {
+.elao-consent__details[open] + .elao-consent__actions {
     display: none;
 }
 
-.cookie-consent__actions {
+.elao-consent__actions {
     margin: 30px 0 0;
     display: flex;
 }
 
-.cookie-consent__actions button {
+.elao-consent__actions button {
     flex: 1;
     height: 50px;
     font-weight: bold;
@@ -104,53 +104,53 @@
     transition: background ease-in .2s;
 }
 
-.cookie-consent__actions button:first-of-type {
+.elao-consent__actions button:first-of-type {
     border-radius: 0 0 0 15px;
 }
 
-.cookie-consent__actions button:last-of-type {
+.elao-consent__actions button:last-of-type {
     border-radius: 0 0 15px 0;
 }
 
-.cookie-consent__actions button:only-of-type {
+.elao-consent__actions button:only-of-type {
     border-radius: 0 0 15px 15px;
 }
 
-.cookie-consent__actions button.reject-all {
+.elao-consent__actions button.reject-all {
     background: var(--secondary);
     color: var(--primary);
 }
 
-.cookie-consent__actions button.reject-all:hover,
-.cookie-consent__actions button.reject-all:active,
-.cookie-consent__actions button.reject-all:focus {
+.elao-consent__actions button.reject-all:hover,
+.elao-consent__actions button.reject-all:active,
+.elao-consent__actions button.reject-all:focus {
     background: var(--secondary-dark);
 }
 
-.cookie-consent__actions button.accept-all {
+.elao-consent__actions button.accept-all {
     color: var(--light);
     background: var(--primary);
 }
 
-.cookie-consent__actions button.accept-all:hover,
-.cookie-consent__actions button.accept-all:active,
-.cookie-consent__actions button.accept-all:focus {
+.elao-consent__actions button.accept-all:hover,
+.elao-consent__actions button.accept-all:active,
+.elao-consent__actions button.accept-all:focus {
     background: var(--primary-dark);
 }
 
 @media (max-width: 650px) {
-    .cookie-consent {
+    .elao-consent {
         width: calc(100% - 20px);
         flex-wrap: wrap;
     }
 
-    .cookie-consent__details ul li {
+    .elao-consent__details ul li {
         margin: 0 0 20px;
         flex-direction: column;
         align-items: flex-start;
     }
 
-    .cookie-consent__details ul li > div {
+    .elao-consent__details ul li > div {
         margin: 10px 0 0;
         width: 100%;
     }
