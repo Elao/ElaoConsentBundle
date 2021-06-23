@@ -27,7 +27,7 @@ class ElaoConsentExtension extends Extension implements PrependExtensionInterfac
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\PhpFileLoader($container, new FileLocator(__DIR__.'/../../config'));
+        $loader = new Loader\PhpFileLoader($container, new FileLocator(__DIR__ . '/../../config'));
         $loader->load('services.php');
 
         $container
@@ -45,7 +45,7 @@ class ElaoConsentExtension extends Extension implements PrependExtensionInterfac
     {
         $container->loadFromExtension('twig', [
             'paths' => [
-                __DIR__.'/../../templates' => 'ElaoConsentBundle',
+                __DIR__ . '/../../templates' => 'ElaoConsentBundle',
             ],
         ]);
     }

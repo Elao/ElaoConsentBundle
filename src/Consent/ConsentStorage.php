@@ -36,7 +36,7 @@ class ConsentStorage
     public function hasUserConsent(string $name = 'default'): bool
     {
         if (!isset($this->consents[$name])) {
-            throw new \Exception("dsf");
+            throw new \Exception('dsf');
         }
 
         $consent = $this->userConsents[$name] ?? null;
