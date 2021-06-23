@@ -89,3 +89,16 @@ In your CSS:
     --elao-consent-dark: #252525;
 }
 ```
+
+SASS example:
+
+```scss
+.elao-consent {
+    $elao-consent-base-color: #FFCA29;
+  
+    --elao-consent-primary: #{$elao-consent-base-color};
+    --elao-consent-primary-dark: #{darken($elao-consent-base-color, 1%)};
+    --elao-consent-secondary: #{lighten($elao-consent-base-color, 50%)};
+    --elao-consent-secondary-dark: #{darken(lighten($elao-consent-base-color, 50%), 1%)};
+}
+```
