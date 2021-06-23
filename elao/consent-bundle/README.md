@@ -69,6 +69,8 @@ With multiple consents:
 
 ## Overrinding colors
 
+In your CSS:
+
 ```css
 .elao-consent {
     --primary: #007bff;
