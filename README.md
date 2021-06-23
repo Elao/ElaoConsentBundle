@@ -2,6 +2,12 @@
 
 This bundle provides a "cookies toast" allowing you to require user consent before using tracking scripts or cookies.
 
+![Blue](./doc/images/toast-blue.png)
+
+![Green](./doc/images/toast-green.png)
+
+![Green](./doc/images/toast-yellow.png)
+
 ## Installation
 
 ```
