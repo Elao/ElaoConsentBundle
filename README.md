@@ -20,7 +20,7 @@ return [
 
 By default, the bundle provide a single consent type called `default`.
 
-You replace this default consent by one or several custom consent:
+You can replace this default consent by one or multiple custom consent:
 
 ```yaml
 elao_consent:
@@ -73,13 +73,13 @@ In your CSS:
 
 ```css
 .elao-consent {
-    --primary: #007bff;
-    --primary-dark: #256cdf;
-    --secondary: #dfebfa;
-    --secondary-dark: #cadef8;
-    --danger: #ef4055;
-    --neutral: #eae8e8;
-    --light: #fff;
-    --dark: #252525;
+    --elao-consent-primary: #007bff;
+    --elao-consent-primary-dark: #256cdf;
+    --elao-consent-secondary: #dfebfa;
+    --elao-consent-secondary-dark: #cadef8;
+    --elao-consent-danger: #ef4055;
+    --elao-consent-neutral: #eae8e8;
+    --elao-consent-light: #fff;
+    --elao-consent-dark: #252525;
 }
 ```
