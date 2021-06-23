@@ -13,6 +13,7 @@ namespace Elao\Bundle\ConsentBundle\EventListener;
 use Elao\Bundle\ConsentBundle\Consent\ConsentStorage;
 use Elao\Bundle\ConsentBundle\Cookie\CookieFactory;
 use Elao\Bundle\ConsentBundle\Renderer\ToastRenderer;
+use Symfony\Component\Asset\Packages;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,17 +26,20 @@ class ConsentEventSubscriber implements EventSubscriberInterface
     private ConsentStorage $storage;
     private ToastRenderer $renderer;
     private CookieFactory $cookieFactory;
+    private Packages $packages;
     private array $consents;
 
     public function __construct(
         ConsentStorage $storage,
         ToastRenderer $renderer,
         CookieFactory $cookieFactory,
+        Packages $packages,
         array $consents,
     ) {
         $this->storage = $storage;
         $this->renderer = $renderer;
         $this->cookieFactory = $cookieFactory;
+        $this->packages = $packages;
         $this->consents = $consents;
     }
 
@@ -84,6 +88,7 @@ class ConsentEventSubscriber implements EventSubscriberInterface
 
         if ($this->storage->isUserConsentRequired()) {
             $this->injectConsentRequirement($event->getResponse());
+            $this->injectConsentStyle($event->getResponse());
         }
     }
 
@@ -93,6 +98,15 @@ class ConsentEventSubscriber implements EventSubscriberInterface
         $pos = strripos($content, '</body>');
         $toast = $this->renderer->render();
         $content = substr($content, 0, $pos).$toast.substr($content, $pos);
+        $response->setContent($content);
+    }
+
+    private function injectConsentStyle(Response $response): void
+    {
+        $content = $response->getContent();
+        $pos = strripos($content, '</head>');
+        $style = "<link rel=\"stylesheet\" href=\"{$this->packages->getUrl('bundles/elaoconsent/css/style.css')}\">";
+        $content = substr($content, 0, $pos).$style.substr($content, $pos);
         $response->setContent($content);
     }
 }

@@ -7,6 +7,7 @@ use Elao\Bundle\ConsentBundle\Cookie\CookieFactory;
 use Elao\Bundle\ConsentBundle\EventListener\ConsentEventSubscriber;
 use Elao\Bundle\ConsentBundle\Renderer\ToastRenderer;
 use Elao\Bundle\ConsentBundle\Twig\ConsentExtension;
+use Symfony\Component\Asset\Packages;
 
 return function(ContainerConfigurator $configurator) {
     $services = $configurator->services();
@@ -41,6 +42,7 @@ return function(ContainerConfigurator $configurator) {
             '$storage' => service(ConsentStorage::class),
             '$renderer' => service(ToastRenderer::class),
             '$cookieFactory' => service(CookieFactory::class),
+            '$packages' => service(Packages::class),
             '$consents' => abstract_arg('consents')
         ]);
 

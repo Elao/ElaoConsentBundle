@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="{{ asset('bundles/elaoconsent/css/style.css') }}">
-
 <form method="POST" class="elao-consent">
     {% if consents|length > 1 %}
         <p>{{ 'elao_consent.messages.consent_message'|trans({}, 'elao_consent')|raw }}</p>
