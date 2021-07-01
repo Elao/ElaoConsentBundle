@@ -1,12 +1,17 @@
 <form method="POST" class="elao-consent">
     {% if consents|length > 1 %}
-        <p>{{ 'elao_consent.messages.consent_message'|trans({}, 'elao_consent')|raw }}</p>
+        <p class="message">{{ 'elao_consent.messages.consent_message'|trans({}, 'elao_consent')|raw }}</p>
         <details class="elao-consent__details">
             <summary>{{ 'elao_consent.messages.details'|trans({}, 'elao_consent')|raw }}</summary>
             <ul>
                 {% for name, consent in consents %}
                     <li>
-                        {{ consent.label }}
+                        <div>
+                            <strong>{{ consent.label }}</strong>
+                            {% if consent.description is not null %}
+                                <p>{{ consent.description }}</p>
+                            {% endif %}
+                        </div>
                         <div class="choice">
                             <div class="radio-button radio-button--reject">
                                 <input type="radio" name="consents[{{ name }}]" value="0" id="consent_{{ name }}_no">

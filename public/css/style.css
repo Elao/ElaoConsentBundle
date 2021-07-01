@@ -14,6 +14,10 @@
     position: fixed;
     bottom: 10px;
     left: 10px;
+
+    max-height: calc(100vh - 20px);
+    overflow: auto;
+
     color: var(--default-elao-consent-dark);
     background-color: var(--default-elao-consent-light);
     border: solid 1px var(--default-elao-consent-neutral);
@@ -36,7 +40,7 @@
     border-radius: 5px;
 }
 
-.elao-consent p {
+.elao-consent .message {
     padding: 0 40px;
 }
 
@@ -74,7 +78,7 @@
     align-items: center;
 }
 
-.elao-consent__details ul li > div {
+.elao-consent__details ul li .choice {
     display: flex;
     margin-left:  auto;
 }

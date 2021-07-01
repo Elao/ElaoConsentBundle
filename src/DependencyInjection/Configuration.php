@@ -40,8 +40,8 @@ class Configuration implements ConfigurationInterface
                     ->useAttributeAsKey('name')
                     ->arrayPrototype()
                         ->children()
-                            ->scalarNode('name')->end()
-                            ->scalarNode('label')->end()
+                            ->scalarNode('label')->isRequired()->end()
+                            ->scalarNode('description')->defaultNull()->end()
                         ->end()
                     ->end()
                     ->defaultValue([
