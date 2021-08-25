@@ -34,7 +34,7 @@ class ConsentEventSubscriber implements EventSubscriberInterface
         ToastRenderer $renderer,
         CookieFactory $cookieFactory,
         Packages $packages,
-        array $consents,
+        array $consents
     ) {
         $this->storage = $storage;
         $this->renderer = $renderer;
@@ -62,10 +62,10 @@ class ConsentEventSubscriber implements EventSubscriberInterface
         $request = $event->getRequest();
 
         if ($request->isMethod(Request::METHOD_POST) && $request->request->get('consents')) {
-            $consents = array_map(fn ($v) => (bool) $v, $request->request->get('consents'));
+            $consents = array_map(function ($v) { return (bool) $v; }, $request->request->get('consents'));
 
             if (isset($consents['_all'])) {
-                $consents = array_map(fn () => $consents['_all'], $this->consents);
+                $consents = array_map(function () use ($consents) { return $consents['_all']; }, $this->consents);
             }
 
             $response = new RedirectResponse($request->getUri());
