@@ -11,7 +11,7 @@ This bundle provides a "cookies toast" allowing you to require user consent befo
 ## Installation
 
 ```
-composer install elao/consent-bundle
+composer require elao/consent-bundle
 ```
 
 In your `bundles.php` files:
