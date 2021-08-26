@@ -36,7 +36,11 @@ class ConsentStorage
     public function hasUserConsent(string $name = 'default'): bool
     {
         if (!isset($this->consents[$name])) {
-            throw new \Exception('dsf');
+            throw new \Exception(sprintf(
+                'Consent not found for name "%s". Available consents are: "%s"',
+                $name,
+                implode('", "', array_keys($this->consents)),
+            ));
         }
 
         $consent = $this->userConsents[$name] ?? null;
