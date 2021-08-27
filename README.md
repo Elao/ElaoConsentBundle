@@ -73,7 +73,7 @@ With multiple consents:
 {% endif %}
 ```
 
-## Overrinding colors
+## Overriding colors
 
 In your CSS:
 
