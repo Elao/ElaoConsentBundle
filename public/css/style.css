@@ -9,19 +9,21 @@
     --default-elao-consent-light: var(--elao-consent-light, #fff);
     --default-elao-consent-dark: var(--elao-consent-dark, #252525);
 
-    padding-top: 30px;
-    width: 600px;
+    padding-top: 20px;
+    width: 420px;
+    height: auto;
     position: fixed;
     bottom: 10px;
     left: 10px;
+    font-size: 16px;
 
     max-height: calc(100vh - 20px);
     overflow: auto;
 
     color: var(--default-elao-consent-dark);
     background-color: var(--default-elao-consent-light);
-    border: solid 1px var(--default-elao-consent-neutral);
-    border-radius: 15px;
+    border: none;
+    border-radius: 4px;
     z-index: 2147483647;
 }
 
@@ -41,11 +43,13 @@
 }
 
 .elao-consent .message {
-    padding: 0 40px;
+    padding: 0 20px;
+    margin-bottom: 12px;
 }
 
 .elao-consent__details summary {
-    margin: 0 40px;
+    /* margin: 15px 0 0; */
+    margin: 0 20px;
     padding-right: 30px;
     display: inline-block;
     position: relative;
@@ -58,10 +62,16 @@
 .elao-consent__details summary:before {
     position: absolute;
     top: 0;
+    right: -10px;
+    font-size: 30px;
+    content: '🍪';
+    line-height: 1;
+    /* position: absolute;
+    top: 0;
     right: 0;
     font-size: 22px;
     content: '🍪';
-    line-height: 1;
+    line-height: 1; */
 }
 
 .elao-consent__details ul {
@@ -92,7 +102,8 @@
 }
 
 .elao-consent__actions {
-    margin: 30px 0 0;
+    /* margin: 30px 0 0; */
+    margin: 15px 0 0;
     display: flex;
 }
 
@@ -104,6 +115,7 @@
     justify-content: center;
     align-items: center;
     border: none;
+    border-top: 1px solid #F1F1F1;
     border-radius: 0;
     transition: background ease-in .2s;
 }
@@ -113,7 +125,7 @@
 }
 
 .elao-consent__actions button:last-of-type {
-    border-radius: 0 0 15px 0;
+    border-radius: 0;
 }
 
 .elao-consent__actions button:only-of-type {
@@ -121,8 +133,9 @@
 }
 
 .elao-consent__actions button.reject-all {
-    background: var(--default-elao-consent-secondary);
+    background: var(--default-elao-consent-light);
     color: var(--default-elao-consent-primary);
+    font-size: 16px;
 }
 
 .elao-consent__actions button.reject-all:hover,
@@ -134,6 +147,7 @@
 .elao-consent__actions button.accept-all {
     color: var(--default-elao-consent-light);
     background: var(--default-elao-consent-primary);
+    font-size: 16px;
 }
 
 .elao-consent__actions button.accept-all:hover,
