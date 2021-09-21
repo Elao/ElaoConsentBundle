@@ -7,22 +7,23 @@
   --default-elao-consent-neutral: var(--elao-consent-neutral, #eae8e8);
   --default-elao-consent-light: var(--elao-consent-light, #fff);
   --default-elao-consent-dark: var(--elao-consent-dark, #252525);
+  --default-elao-consent-border-radius: var(--elao-consent-border-radius);
 
   padding-top: 20px;
-  width: 420px;
+  width: 350px;
   height: auto;
   position: fixed;
   bottom: 10px;
   left: 10px;
   font-size: 15px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, sans-serif;
   box-shadow: 0 0 10px rgba(0, 0, 0, .1);
   max-height: calc(100vh - 20px);
   overflow: auto;
   color: var(--default-elao-consent-dark);
   background-color: var(--default-elao-consent-light);
   border: none;
-  border-radius: 4px;
+  border-radius: var(--default-elao-consent-border-radius);
   z-index: 2147483647;
 }
 
@@ -38,7 +39,7 @@
   font-weight: bold;
   background: var(--default-elao-consent-primary);
   border: none;
-  border-radius: 5px;
+  border-radius: var(--default-elao-consent-border-radius);
 }
 
 .elao-consent .message {
@@ -47,8 +48,9 @@
 }
 
 .elao-consent__details summary {
+  position: relative;
   margin: 0 20px;
-  padding-right: 30px;
+  padding-right: 35px;
   display: inline-block;
   position: relative;
   color: var(--default-elao-consent-primary);
@@ -59,8 +61,9 @@
 
 .elao-consent__details summary:before {
   position: absolute;
-  top: 0;
-  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0px;
   font-size: 30px;
   content: '🍪';
   line-height: 1;
@@ -100,33 +103,34 @@
 
 .elao-consent__actions button {
   flex: 1;
-  height: 50px;
+  height: 40px;
   font-weight: bold;
   display: flex;
   justify-content: center;
   align-items: center;
   border: none;
-  border-top: 1px solid var(--default-elao-consent-secondary);
-  border-radius: 0;
+  border-top: 1px solid var(--default-elao-consent-primary);
+  border-radius: var(--default-elao-consent-border-radius);
   transition: background ease-in .2s;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .elao-consent__actions button:first-of-type {
-  border-radius: 0 0 4px 0;
+  border-radius: 0 0 var(--default-elao-consent-border-radius) 0;
 }
 
 .elao-consent__actions button:last-of-type {
-  border-radius: 0 0 4px 0;
+  border-radius: 0 0 var(--default-elao-consent-border-radius) 0;
 }
 
 .elao-consent__actions button:only-of-type {
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 var(--default-elao-consent-border-radius) var(--default-elao-consent-border-radius);
 }
 
 .elao-consent__actions button.reject-all {
   background: var(--default-elao-consent-light);
   color: var(--default-elao-consent-primary);
+  border-top: 1px solid var(--default-elao-consent-secondary);
 }
 
 .elao-consent__actions button.reject-all:hover,
@@ -164,11 +168,12 @@
   }
 }
 
-.radio-button {
+
+.elao-consent .radio-button {
   display: flex;
 }
 
-.radio-button label {
+.elao-consent .radio-button label {
   margin: 0;
   padding: 5px 0;
   min-width: 90px;
@@ -180,38 +185,38 @@
   cursor: pointer;
 }
 
-.radio-button:first-of-type label {
+.elao-consent .radio-button:first-of-type label {
   border-right: solid 2px var(--default-elao-consent-light);
-  border-radius: 5px 0 0 5px;
+  border-radius: var(--default-elao-consent-border-radius) 0 0 var(--default-elao-consent-border-radius);
 }
 
-.radio-button:last-of-type label {
+.elao-consent .radio-button:last-of-type label {
   border-left: solid 2px var(--default-elao-consent-light);
-  border-radius: 0 5px 5px 0;
+  border-radius: 0 var(--default-elao-consent-border-radius) var(--default-elao-consent-border-radius) 0;
 }
 
-.radio-button input {
+.elao-consent .radio-button input {
   display: none;
 }
 
-.radio-button--accept input:checked + label {
+.elao-consent .radio-button--accept input:checked + label {
   color: var(--default-elao-consent-light);
   background: var(--default-elao-consent-primary);
   font-weight: bold;
 }
 
-.radio-button--reject input:checked + label {
+.elao-consent .radio-button--reject input:checked + label {
   color: var(--default-elao-consent-light);
   background: var(--default-elao-consent-danger);
   font-weight: bold;
 }
 
 @media ( max-width: 650px ) {
-  .radio-button {
+  .elao-consent .radio-button {
     width: 50%;
   }
 
-  .radio-button label {
+  .elao-consent .radio-button label {
     width: 100%;
   }
 }
