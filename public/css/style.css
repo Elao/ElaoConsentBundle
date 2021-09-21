@@ -1,4 +1,3 @@
-/* consent box */
 .elao-consent {
   --default-elao-consent-primary: var(--elao-consent-primary, #007bff);
   --default-elao-consent-primary-dark: var(--elao-consent-primary-dark, #256cdf);
@@ -165,7 +164,9 @@
   }
 }
 
-/* Radio button  */
+.radio-button {
+  display: flex;
+}
 
 .radio-button label {
   margin: 0;
