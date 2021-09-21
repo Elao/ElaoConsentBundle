@@ -15,13 +15,11 @@
   position: fixed;
   bottom: 10px;
   left: 10px;
-  font-size: 16px;
+  font-size: 15px;
   font-family: Arial, Helvetica, sans-serif;
   box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-
   max-height: calc(100vh - 20px);
   overflow: auto;
-
   color: var(--default-elao-consent-dark);
   background-color: var(--default-elao-consent-light);
   border: none;
@@ -70,7 +68,7 @@
 }
 
 .elao-consent__details ul {
-  padding: 20px 40px 0;
+  padding: 20px 20px 0;
 }
 
 .elao-consent__details ul {
@@ -97,7 +95,7 @@
 }
 
 .elao-consent__actions {
-  margin: 15px 0 0;
+  margin: 20px 0 0;
   display: flex;
 }
 
@@ -109,27 +107,27 @@
   justify-content: center;
   align-items: center;
   border: none;
-  border-top: 1px solid #F1F1F1;
+  border-top: 1px solid var(--default-elao-consent-secondary);
   border-radius: 0;
   transition: background ease-in .2s;
+  font-size: 16px;
 }
 
 .elao-consent__actions button:first-of-type {
-  border-radius: 0 0 0 15px;
+  border-radius: 0 0 4px 0;
 }
 
 .elao-consent__actions button:last-of-type {
-  border-radius: 0;
+  border-radius: 0 0 4px 0;
 }
 
 .elao-consent__actions button:only-of-type {
-  border-radius: 0 0 15px 15px;
+  border-radius: 0 0 4px 4px;
 }
 
 .elao-consent__actions button.reject-all {
   background: var(--default-elao-consent-light);
   color: var(--default-elao-consent-primary);
-  font-size: 16px;
 }
 
 .elao-consent__actions button.reject-all:hover,
@@ -141,7 +139,6 @@
 .elao-consent__actions button.accept-all {
   color: var(--default-elao-consent-light);
   background: var(--default-elao-consent-primary);
-  font-size: 16px;
 }
 
 .elao-consent__actions button.accept-all:hover,
@@ -169,6 +166,7 @@
 }
 
 /* Radio button  */
+
 .radio-button label {
   margin: 0;
   padding: 5px 0;
