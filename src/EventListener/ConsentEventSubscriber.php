@@ -55,14 +55,14 @@ class ConsentEventSubscriber implements EventSubscriberInterface
 
     public function onRequest(RequestEvent $event): void
     {
-        if (!$event->isMasterRequest()) {
+        if (!$event->isMainRequest()) {
             return;
         }
 
         $request = $event->getRequest();
 
-        if ($request->isMethod(Request::METHOD_POST) && $request->request->get('consents')) {
-            $consents = array_map(function ($v) { return (bool) $v; }, $request->request->get('consents'));
+        if ($request->isMethod(Request::METHOD_POST) && $request->request->has('consents')) {
+            $consents = array_map(function ($v) { return (bool) $v; }, $request->request->all('consents'));
 
             if (isset($consents['_all'])) {
                 $consents = array_map(function () use ($consents) { return $consents['_all']; }, $this->consents);
@@ -82,7 +82,7 @@ class ConsentEventSubscriber implements EventSubscriberInterface
 
     public function onResponse(ResponseEvent $event): void
     {
-        if (!$event->isMasterRequest()) {
+        if (!$event->isMainRequest()) {
             return;
         }
 
