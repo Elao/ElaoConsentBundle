@@ -1,210 +1,219 @@
-/* consent box */
 .elao-consent {
-    --default-elao-consent-primary: var(--elao-consent-primary, #007bff);
-    --default-elao-consent-primary-dark: var(--elao-consent-primary-dark, #256cdf);
-    --default-elao-consent-secondary: var(--elao-consent-secondary, #dfebfa);
-    --default-elao-consent-secondary-dark: var(--elao-consent-secondary-dark, #cadef8);
-    --default-elao-consent-danger: var(--elao-consent-danger, #ef4055);
-    --default-elao-consent-neutral: var(--elao-consent-neutral, #eae8e8);
-    --default-elao-consent-light: var(--elao-consent-light, #fff);
-    --default-elao-consent-dark: var(--elao-consent-dark, #252525);
+  --default-elao-consent-primary: var(--elao-consent-primary, #007bff);
+  --default-elao-consent-primary-dark: var(--elao-consent-primary-dark, #256cdf);
+  --default-elao-consent-secondary: var(--elao-consent-secondary, #dfebfa);
+  --default-elao-consent-secondary-dark: var(--elao-consent-secondary-dark, #cadef8);
+  --default-elao-consent-danger: var(--elao-consent-danger, #ef4055);
+  --default-elao-consent-neutral: var(--elao-consent-neutral, #eae8e8);
+  --default-elao-consent-light: var(--elao-consent-light, #fff);
+  --default-elao-consent-dark: var(--elao-consent-dark, #252525);
+  --default-elao-consent-border-radius: var(--elao-consent-border-radius, 4px);
 
-    padding-top: 30px;
-    width: 600px;
-    position: fixed;
-    bottom: 10px;
-    left: 10px;
-
-    max-height: calc(100vh - 20px);
-    overflow: auto;
-
-    color: var(--default-elao-consent-dark);
-    background-color: var(--default-elao-consent-light);
-    border: solid 1px var(--default-elao-consent-neutral);
-    border-radius: 15px;
-    z-index: 2147483647;
+  padding-top: 20px;
+  width: 350px;
+  height: auto;
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  font-size: 15px;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+  max-height: calc(100vh - 20px);
+  overflow: auto;
+  color: var(--default-elao-consent-dark);
+  background-color: var(--default-elao-consent-light);
+  border: none;
+  border-radius: var(--default-elao-consent-border-radius);
+  z-index: 2147483647;
 }
 
 .elao-consent a {
-    color: var(--default-elao-consent-primary);
-    font-weight: bold;
-    text-decoration: underline;
+  color: var(--default-elao-consent-primary);
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 .elao-consent button {
-    padding: 7px 25px;
-    color: var(--default-elao-consent-light);
-    font-weight: bold;
-    background: var(--default-elao-consent-primary);
-    border: none;
-    border-radius: 5px;
+  padding: 7px 25px;
+  color: var(--default-elao-consent-light);
+  font-weight: bold;
+  background: var(--default-elao-consent-primary);
+  border: none;
+  border-radius: var(--default-elao-consent-border-radius);
 }
 
 .elao-consent .message {
-    padding: 0 40px;
+  padding: 0 20px;
+  margin-bottom: 12px;
 }
 
 .elao-consent__details summary {
-    margin: 0 40px;
-    padding-right: 30px;
-    display: inline-block;
-    position: relative;
-    color: var(--default-elao-consent-primary);
-    font-weight: bold;
-    text-decoration: underline;
-    list-style: none;
+  position: relative;
+  margin: 0 20px;
+  padding-right: 35px;
+  display: inline-block;
+  position: relative;
+  color: var(--default-elao-consent-primary);
+  font-weight: bold;
+  text-decoration: underline;
+  list-style: none;
 }
 
 .elao-consent__details summary:before {
-    position: absolute;
-    top: 0;
-    right: 0;
-    font-size: 22px;
-    content: '🍪';
-    line-height: 1;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  font-size: 27px;
+  content: '🍪';
+  line-height: 1;
 }
 
 .elao-consent__details ul {
-    padding: 20px 40px 0;
+  padding: 20px 20px 0;
 }
 
 .elao-consent__details ul {
-    list-style: none;
+  list-style: none;
 }
 
 .elao-consent__details ul li {
-    margin: 0 0 4px;
-    display: flex;
-    align-items: center;
+  margin: 0 0 4px;
+  display: flex;
+  align-items: center;
 }
 
 .elao-consent__details ul li .choice {
-    display: flex;
-    margin-left:  auto;
+  display: flex;
+  margin-left:  auto;
 }
 
 .elao-consent__details[open] {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .elao-consent__details[open] + .elao-consent__actions {
-    display: none;
+  display: none;
 }
 
 .elao-consent__actions {
-    margin: 30px 0 0;
-    display: flex;
+  margin: 20px 0 0;
+  display: flex;
 }
 
 .elao-consent__actions button {
-    flex: 1;
-    height: 50px;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    border-radius: 0;
-    transition: background ease-in .2s;
+  flex: 1;
+  height: 40px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-top: 1px solid var(--default-elao-consent-primary);
+  border-radius: var(--default-elao-consent-border-radius);
+  transition: background ease-in .2s;
+  font-size: 14px;
 }
 
 .elao-consent__actions button:first-of-type {
-    border-radius: 0 0 0 15px;
+  border-radius: 0 0 var(--default-elao-consent-border-radius) 0;
 }
 
 .elao-consent__actions button:last-of-type {
-    border-radius: 0 0 15px 0;
+  border-radius: 0 0 var(--default-elao-consent-border-radius) 0;
 }
 
 .elao-consent__actions button:only-of-type {
-    border-radius: 0 0 15px 15px;
+  border-radius: 0 0 var(--default-elao-consent-border-radius) var(--default-elao-consent-border-radius);
 }
 
 .elao-consent__actions button.reject-all {
-    background: var(--default-elao-consent-secondary);
-    color: var(--default-elao-consent-primary);
+  background: var(--default-elao-consent-light);
+  color: var(--default-elao-consent-primary);
+  border-top: 1px solid var(--default-elao-consent-secondary);
 }
 
 .elao-consent__actions button.reject-all:hover,
 .elao-consent__actions button.reject-all:active,
 .elao-consent__actions button.reject-all:focus {
-    background: var(--default-elao-consent-secondary-dark);
+  background: var(--default-elao-consent-secondary-dark);
 }
 
 .elao-consent__actions button.accept-all {
-    color: var(--default-elao-consent-light);
-    background: var(--default-elao-consent-primary);
+  color: var(--default-elao-consent-light);
+  background: var(--default-elao-consent-primary);
 }
 
 .elao-consent__actions button.accept-all:hover,
 .elao-consent__actions button.accept-all:active,
 .elao-consent__actions button.accept-all:focus {
-    background: var(--default-elao-consent-primary-dark);
+  background: var(--default-elao-consent-primary-dark);
 }
 
-@media (max-width: 650px) {
-    .elao-consent {
-        width: calc(100% - 20px);
-        flex-wrap: wrap;
-    }
-
-    .elao-consent__details ul li {
-        margin: 0 0 20px;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .elao-consent__details ul li > div {
-        margin: 10px 0 0;
-        width: 100%;
-    }
+.elao-consent .radio-button {
+  display: flex;
 }
 
-/* Radio button  */
-.radio-button label {
-    margin: 0;
-    padding: 5px 0;
-    min-width: 90px;
-    font-weight: normal;
-    font-size: 14px;
-    text-align: center;
-    background: var(--default-elao-consent-neutral);
-    color: var(--default-elao-consent-dark);
-    cursor: pointer;
+.elao-consent .radio-button label {
+  margin: 0;
+  padding: 5px 0;
+  min-width: 90px;
+  font-weight: normal;
+  font-size: 14px;
+  text-align: center;
+  background: var(--default-elao-consent-neutral);
+  color: var(--default-elao-consent-dark);
+  cursor: pointer;
 }
 
-.radio-button:first-of-type label {
-    border-right: solid 2px var(--default-elao-consent-light);
-    border-radius: 5px 0 0 5px;
+.elao-consent .radio-button:first-of-type label {
+  border-right: solid 2px var(--default-elao-consent-light);
+  border-radius: var(--default-elao-consent-border-radius) 0 0 var(--default-elao-consent-border-radius);
 }
 
-.radio-button:last-of-type label {
-    border-left: solid 2px var(--default-elao-consent-light);
-    border-radius: 0 5px 5px 0;
+.elao-consent .radio-button:last-of-type label {
+  border-left: solid 2px var(--default-elao-consent-light);
+  border-radius: 0 var(--default-elao-consent-border-radius) var(--default-elao-consent-border-radius) 0;
 }
 
-.radio-button input {
-    display: none;
+.elao-consent .radio-button input {
+  display: none;
 }
 
-.radio-button--accept input:checked + label {
-    color: var(--default-elao-consent-light);
-    background: var(--default-elao-consent-primary);
-    font-weight: bold;
+.elao-consent .radio-button--accept input:checked + label {
+  color: var(--default-elao-consent-light);
+  background: var(--default-elao-consent-primary);
+  font-weight: bold;
 }
 
-.radio-button--reject input:checked + label {
-    color: var(--default-elao-consent-light);
-    background: var(--default-elao-consent-danger);
-    font-weight: bold;
+.elao-consent .radio-button--reject input:checked + label {
+  color: var(--default-elao-consent-light);
+  background: var(--default-elao-consent-danger);
+  font-weight: bold;
 }
 
 @media ( max-width: 650px ) {
-    .radio-button {
-        width: 50%;
-    }
+  .elao-consent {
+    width: calc(100% - 20px);
+    flex-wrap: wrap;
+  }
 
-    .radio-button label {
-        width: 100%;
-    }
+  .elao-consent__details ul li {
+    margin: 0 0 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .elao-consent__details ul li > div {
+    margin: 10px 0 0;
+    width: 100%;
+  }
+
+  .elao-consent .radio-button {
+    width: 50%;
+  }
+
+  .elao-consent .radio-button label {
+    width: 100%;
+  }
 }
