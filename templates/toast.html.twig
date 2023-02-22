@@ -34,7 +34,7 @@
             <button type="submit" name="consents[_all]" value="1" class="accept-all">{{ 'elao_consent.messages.accept_all'|trans({}, 'elao_consent')|raw }}</button>
         </div>
     {% else %}
-        <p>{{ 'elao_consent.messages.consent_message'|trans({}, 'elao_consent')|raw }}</p>
+        <p class="message">{{ 'elao_consent.messages.consent_message'|trans({}, 'elao_consent')|raw }}</p>
         <div class="elao-consent__actions">
             <button type="submit" name="consents[{{ consents|keys|first }}]" value="1" class="reject-all">{{ 'elao_consent.messages.accept'|trans({}, 'elao_consent')|raw }}</button>
             <button type="submit" name="consents[{{ consents|keys|first }}]" value="0" class="accept-all">{{ 'elao_consent.messages.reject'|trans({}, 'elao_consent')|raw }}</button>
