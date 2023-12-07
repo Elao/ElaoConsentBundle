@@ -29,6 +29,7 @@ class CookieFactory
         return Cookie::create($this->name)
             ->withValue(json_encode($consents))
             ->withExpires((new \DateTime())->modify("+{$this->ttl} seconds"))
+            ->withSameSite(Cookie::SAMESITE_NONE)
         ;
     }
 
