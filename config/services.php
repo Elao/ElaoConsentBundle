@@ -7,6 +7,7 @@ use Elao\Bundle\ConsentBundle\Cookie\CookieFactory;
 use Elao\Bundle\ConsentBundle\EventListener\ConsentEventSubscriber;
 use Elao\Bundle\ConsentBundle\Renderer\ToastRenderer;
 use Elao\Bundle\ConsentBundle\Twig\ConsentExtension;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Asset\Packages;
 
 return function(ContainerConfigurator $configurator) {
@@ -17,6 +18,7 @@ return function(ContainerConfigurator $configurator) {
         ->args([
             '$name' => abstract_arg('cookie.name'),
             '$ttl' => abstract_arg('cookie.ttl'),
+            '$logger' => service(LoggerInterface::class),
         ])
     ;
 
